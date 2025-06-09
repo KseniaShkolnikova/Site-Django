@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - Интернет-магазин</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        main {
+            padding: 40px 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 20px;
+            color: var(--light);
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--light);
+            font-size: 14px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .cart-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .cart-items {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .cart-summary {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .cart-item-price {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 30px;
+        }
+        
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            background-color: var(--light);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .quantity button:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .quantity input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .remove-item {
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .remove-item:hover {
+            color: #c0392b;
+        }
+        
+        .remove-item i {
+            margin-right: 5px;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .summary-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 3px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 15px;
+            color: var(--primary);
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            margin-top: 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .checkout-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            color: var(--accent);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .empty-cart p {
+            color: var(--text);
+            margin-bottom: 25px;
+        }
+        
+        .empty-cart-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .empty-cart-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-image {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .footer-section {
+                flex: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo"><a href="index.html"><i class="fas fa-store"></i>Интернет-магазин</a></div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'main' %}"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> О компании</a></li>
+                    <li><a href="{% url 'cart' %}" class="active"><i class="fas fa-shopping-cart"></i> Корзина</a></li>
+                    <li><a href="{% url 'products' %}"><i class="fas fa-box-open"></i> Товары</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Ваша корзина</h1>
+            
+            <div class="cart-container">
+                <div class="cart-items">
+                    <!-- Товар 1 в корзине -->
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/1483026812/100024973204b0.jpg" alt="Товар 1">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">Смартфон XYZ Model 10</div>
+                            <div class="cart-item-price">25 990 ₽</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity">
+                                    <button>-</button>
+                                    <input type="text" value="1">
+                                    <button>+</button>
+                                </div>
+                                <a href="#" class="remove-item"><i class="fas fa-trash-alt"></i> Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Товар 2 в корзине -->
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="https://bosestore.ru/upload/iblock/939/glluctgdmz836tcdxw3aobckz6vs1ai3/bose_quietcomfort_ultra_headphones_black_01.jpg" alt="Товар 2">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">Наушники Wireless Sound</div>
+                            <div class="cart-item-price">7 990 ₽</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                                <a href="#" class="remove-item"><i class="fas fa-trash-alt"></i> Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-title">Итого</div>
+                    <div class="summary-row">
+                        <span>Товары (3)</span>
+                        <span>41 970 ₽</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Доставка</span>
+                        <span>Бесплатно</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>К оплате</span>
+                        <span>41 970 ₽</span>
+                    </div>
+                    <button class="checkout-btn">Оформить заказ</button>
+                    <a href="{% url 'products' %}" class="continue-shopping">Продолжить покупки</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>О компании</h3>
+                    <p>Лидер на рынке интернет-торговли с 2010 года. Мы предлагаем качественные товары по лучшим ценам с гарантией и отличным сервисом.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Меню</h3>
+                    <a href="{% url 'main' %}">Главная</a>
+                    <a href="{% url 'about' %}">О компании</a>
+                    <a href="{% url 'cart' %}">Корзина</a>
+                    <a href="{% url 'products' %}">Товары</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</p>
+                    <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
+                    <p><i class="fas fa-envelope"></i> info@example.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Интернет-магазин. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
