@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная - Интернет-магазин</title>
+    <title>SOY FLOWER - Доставка японской кухни</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --text: #333;
-            --text-light: #7f8c8d;
+            --primary: #000000;
+            --secondary: #E31937;
+            --accent: #D4AF37;
+            --light: #FFFFFF;
+            --dark: #1A1A1A;
+            --text: #333333;
+            --text-light: #777777;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
             color: var(--text);
-            background-color: #f9f9f9;
+            background-color: #FAFAFA;
         }
         
         .container {
@@ -34,12 +35,13 @@
         
         header {
             background-color: var(--primary);
-            color: white;
-            padding: 20px 0;
+            color: var(--light);
+            padding: 15px 0;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 3px solid var(--secondary);
         }
         
         .header-container {
@@ -53,10 +55,11 @@
             font-weight: bold;
             display: flex;
             align-items: center;
+            letter-spacing: 2px;
         }
         
         .logo a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -64,6 +67,15 @@
         
         .logo i {
             margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
             color: var(--secondary);
         }
         
@@ -75,16 +87,493 @@
         }
         
         nav ul li {
-            margin-left: 25px;
+            margin-left: 30px;
             position: relative;
         }
         
         nav ul li a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 5px 0;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .hero h1 span {
+            color: var(--secondary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--light);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 20px auto;
+        }
+        
+        .menu-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .category-card {
+            background: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            border: 1px solid #eee;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .category-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-content {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .category-content h3 {
+            margin: 0 0 15px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .category-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .special-offer {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            color: var(--light);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .special-offer h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .special-offer h2 span {
+            color: var(--secondary);
+        }
+        
+        .special-offer p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .testimonials {
+            background-color: #f8f8f8;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '\201C';
+            font-size: 5rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            margin: 0 0 5px;
+            color: var(--primary);
+        }
+        
+        .author-info p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: var(--light);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 18px;
+            width: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+    </style>
+        <style>
+        :root {
+            --primary: #000000;
+            --secondary: #E31937;
+            --accent: #D4AF37;
+            --light: #FFFFFF;
+            --dark: #1A1A1A;
+            --text: #333333;
+            --text-light: #777777;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #FAFAFA;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header (точно как вы указали) */
+        header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            letter-spacing: 2px;
+        }
+        
+        .logo a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            font-size: 16px;
+            letter-spacing: 1px;
         }
         
         nav ul li a:hover {
@@ -111,105 +600,297 @@
             min-height: calc(100vh - 200px);
         }
         
+        /* Footer (точно как вы указали) */
         footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 60px;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 20px;
         }
         
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
             margin-bottom: 20px;
-            padding: 0 15px;
+            letter-spacing: 2px;
         }
         
-        .footer-section h3 {
+        .footer-logo span {
             color: var(--secondary);
+        }
+        
+        .footer-about p {
             margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: var(--light);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 18px;
+            width: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* Стили для корзины */
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
             position: relative;
             padding-bottom: 10px;
         }
         
-        .footer-section h3::after {
+        h1::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .cart-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .cart-items {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .cart-summary {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .cart-item-price {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 30px;
+        }
+        
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            background-color: var(--light);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .quantity button:hover {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .quantity input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .remove-item {
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .remove-item:hover {
+            color: #c0392b;
+        }
+        
+        .remove-item i {
+            margin-right: 5px;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .summary-title::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
             width: 50px;
-            height: 2px;
-            background-color: var(--secondary);
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
         }
         
-        .footer-section p, .footer-section a {
-            color: var(--light);
-            margin-bottom: 10px;
-            display: block;
-            text-decoration: none;
-            transition: color 0.3s;
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
         }
         
-        .footer-section a:hover {
-            color: var(--secondary);
-        }
-        
-        .social-icons a {
-            display: inline-block;
-            margin-right: 15px;
-            font-size: 20px;
-            color: var(--light);
-        }
-        
-        .social-icons a:hover {
-            color: var(--secondary);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--light);
-            font-size: 14px;
-        }
-
-        /* Стили для главной страницы */
-        .hero {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .hero p {
+        .summary-total {
+            font-weight: bold;
             font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 15px;
+            color: var(--primary);
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            background: var(--secondary);
             color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
+            text-align: center;
+            padding: 12px;
             text-decoration: none;
+            margin-top: 25px;
+            border-radius: 5px;
             font-weight: bold;
             transition: all 0.3s;
             border: none;
@@ -217,111 +898,61 @@
             font-size: 1rem;
         }
         
-        .btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .checkout-btn:hover {
+            background-color: #c1121f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .features {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin: 50px 0;
-            gap: 30px;
-        }
-        
-        .feature {
-            flex: 1;
-            min-width: 250px;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
+        .continue-shopping {
+            display: block;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .feature i {
-            font-size: 2.5rem;
+            margin-top: 15px;
             color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            color: #c1121f;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            color: var(--text-light);
             margin-bottom: 20px;
         }
         
-        .feature h3 {
+        .empty-cart h2 {
             color: var(--primary);
             margin-bottom: 15px;
         }
         
-        .feature p {
-            color: var(--text-light);
-        }
-        
-        .categories {
-            margin: 60px 0;
-        }
-        
-        .section-title {
-            color: var(--primary);
-            font-size: 1.8rem;
+        .empty-cart p {
+            color: var(--text);
             margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-            text-align: center;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            border-radius: 3px;
-            transform: translateX(-50%);
+        .empty-cart-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
         }
         
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .category-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .category-img {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .category-info {
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .category-info h3 {
-            margin: 0 0 10px;
-            color: var(--primary);
+        .empty-cart-btn:hover {
+            background-color: var(--primary);
         }
         
         @media (max-width: 768px) {
@@ -337,12 +968,15 @@
                 margin: 0 10px;
             }
             
-            .hero h1 {
-                font-size: 2rem;
+            .cart-item {
+                flex-direction: column;
             }
             
-            .footer-section {
-                flex: 100%;
+            .cart-item-image {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -350,112 +984,173 @@
 <body>
     <header>
         <div class="container header-container">
-            <div class="logo"><a href="index.html"><i class="fas fa-store"></i>Интернет-магазин</a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-utensils"></i>
+                    <span class="logo-text">SOY <span>FLOWER</span></span>
+                </a>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="{% url 'main' %}" class="active"><i class="fas fa-home"></i> Главная</a></li>
-                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> О компании</a></li>
-                    <li><a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i> Корзина</a></li>
-                    <li><a href="{% url 'products' %}"><i class="fas fa-box-open"></i> Товары</a></li>
+                    <li><a href="{% url 'main' %}">Главная</a></li>
+                    <li><a href="{% url 'products' %}">Меню</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'cart' %}" class="active">Корзина</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <div class="container">
-            <section class="hero">
-                <h1>Добро пожаловать в наш интернет-магазин!</h1>
-                <p>Мы предлагаем широкий ассортимент качественных товаров по доступным ценам с быстрой доставкой по всей стране.</p>
-                <a href="{% url 'products' %}" class="btn">Перейти к покупкам</a>
-            </section>
-
-            <section class="features">
-                <div class="feature">
-                    <i class="fas fa-boxes"></i>
-                    <h3>Широкий ассортимент</h3>
-                    <p>Более 5000 товаров в различных категориях от проверенных производителей</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-truck"></i>
-                    <h3>Быстрая доставка</h3>
-                    <p>Доставка по всей стране за 1-3 дня, курьером или в пункты выдачи</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-medal"></i>
-                    <h3>Гарантия качества</h3>
-                    <p>Все товары проходят тщательную проверку перед отправкой покупателю</p>
-                </div>
-            </section>
-
-            <section class="categories">
-                <h2 class="section-title">Популярные категории</h2>
-                <div class="category-grid">
-                    <div class="category-card">
-                        <div class="category-img" style="background-image: url('https://habrastorage.org/r/w1560/webt/ex/nx/kp/exnxkpgpgvdl7gh5qtge1032cj4.jpeg');"></div>
-                        <div class="category-info">
-                            <h3>Электроника</h3>
-                            <a href="{% url "electonica" %}" class="btn">Смотреть</a>
-                        </div>
-                    </div>
-                    <div class="category-card">
-                        <div class="category-img" style="background-image: url('https://avatars.mds.yandex.net/get-altay/4324073/2a00000178505aff58ff27b8c86f4fe9c239/L_height');"></div>
-                        <div class="category-info">
-                            <h3>Бытовая техника</h3>
-                            <a href="{% url "tehnica" %}" class="btn">Смотреть</a>
-                        </div>
-                    </div>
-                    <div class="category-card">
-                        <div class="category-img" style="background-image: url('https://services.kontur.ru/Files/Modules/Article/37766_big_md_1x.jpg?t=1674832151');"></div>
-                        <div class="category-info">
-                            <h3>Одежда</h3>
-                            <a href="{% url "clother" %}" class="btn">Смотреть</a>
-                        </div>
-                    </div>
-                    <div class="category-card">
-                        <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                        <div class="category-info">
-                            <h3>Спорт</h3>
-                            <a href="{% url "sport" %}" class="btn">Смотреть</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Насладитесь <span>истинным вкусом</span> Японии</h1>
+            <p>SOY FLOWER - это искусство японской кухни в каждом блюде. Свежие ингредиенты, традиционные рецепты и современная подача.</p>
+            <a href="{% url 'products' %}" class="btn">Посмотреть меню</a>
         </div>
-    </main>
+    </section>
+
+    <section class="container">
+        <div class="section-title">
+            <h2>Наше меню</h2>
+            <p>Откройте для себя богатство вкусов традиционной японской кухни</p>
+        </div>
+        
+        <div class="menu-categories">
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1617196035154-1e2b6ef0aa88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="category-content">
+                    <h3>Суши и сашими</h3>
+                    <p>Свежайшая рыба, идеально приготовленный рис и традиционные японские техники</p>
+                    <a href="#" class="btn">Выбрать</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="category-content">
+                    <h3>Роллы</h3>
+                    <p>Классические и авторские роллы с разнообразными начинками и соусами</p>
+                    <a href="#" class="btn">Выбрать</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="category-content">
+                    <h3>Горячие блюда</h3>
+                    <p>Теплые японские блюда - темпура, удон, рамен и многое другое</p>
+                    <a href="#" class="btn">Выбрать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="special-offer">
+        <div class="container">
+            <h2>Специальное предложение <span>этой недели</span></h2>
+            <p>Закажите сет "Сакура" и получите бесплатную доставку и набор соевого соуса с васаби и имбирем</p>
+            <a href="#" class="btn">Заказать сейчас</a>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Отзывы</h2>
+                <p>Что говорят наши клиенты</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Лучшие суши в городе! Заказываю регулярно, всегда свежие ингредиенты и быстрая доставка. Особенно люблю их авторские роллы."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+                        <div class="author-info">
+                            <h4>Анна К.</h4>
+                            <p>Постоянный клиент</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Заказали сет на корпоратив, все были в восторге! Красивая подача, свежие продукты и отличный сервис. Обязательно будем заказывать снова."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                        <div class="author-info">
+                            <h4>Дмитрий С.</h4>
+                            <p>Клиент</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Очень вкусные горячие блюда, особенно рамен. Доставка всегда вовремя, даже в плохую погоду. Рекомендую всем любителям японской кухни!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-image: url('https://randomuser.me/api/portraits/women/68.jpg');"></div>
+                        <div class="author-info">
+                            <h4>Елена М.</h4>
+                            <p>Клиент</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>О компании</h3>
-                    <p>Лидер на рынке интернет-торговли с 2010 года. Мы предлагаем качественные товары по лучшим ценам с гарантией и отличным сервисом.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
+                <div class="footer-about">
+                    <div class="footer-logo">SOY <span>FLOWER</span></div>
+                    <p>Ресторан японской кухни с доставкой по всему городу. Свежие ингредиенты, традиционные рецепты и неповторимый вкус.</p>
+                    <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
                     </div>
                 </div>
                 
-                <div class="footer-section">
+                <div class="footer-links">
                     <h3>Меню</h3>
-                    <a href="{% url 'main' %}">Главная</a>
-                    <a href="{% url 'about' %}">О компании</a>
-                    <a href="{% url 'cart' %}">Корзина</a>
-                    <a href="{% url 'products' %}">Товары</a>
+                    <ul>
+                        <li><a href="#">Суши и сашими</a></li>
+                        <li><a href="#">Роллы</a></li>
+                        <li><a href="#">Горячие блюда</a></li>
+                        <li><a href="#">Сеты</a></li>
+                        <li><a href="#">Напитки</a></li>
+                    </ul>
                 </div>
                 
-                <div class="footer-section">
+                <div class="footer-contact">
                     <h3>Контакты</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</p>
-                    <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
-                    <p><i class="fas fa-envelope"></i> info@example.com</p>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>ул. Сакуры, 15, г. Москва</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+7 (999) 123-45-67</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@soyflower.ru</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Ежедневно с 10:00 до 23:00</span>
+                    </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Интернет-магазин. Все права защищены.</p>
+                <p>&copy; 2023 SOY FLOWER. Все права защищены.</p>
             </div>
         </div>
     </footer>

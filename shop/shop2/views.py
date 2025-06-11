@@ -1,4 +1,166 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
+from .models import *
+from .forms import *
+
+class OrderItemListView(ListView):
+    model = OrderItem
+    template_name = 'OrderItem/OrderItem_list.html'
+    context_object_name = 'OrderItem'
+    
+class OrderItemDetailView(DetailView):
+    model = OrderItem
+    template_name = 'OrderItem/OrderItem_detail.html'
+    context_object_name = 'OrderItem'    
+
+class OrderItemCreateView(CreateView):
+    model = OrderItem
+    form_class = OrderItemForm
+    template_name = 'OrderItem/OrderItem_form.html'
+    success_url= reverse_lazy('OrderItem_list_view')
+
+class OrderItemUpdateView(UpdateView):
+    model = OrderItem
+    form_class = OrderItemForm
+    template_name = 'OrderItem/OrderItem_form.html'
+    success_url= reverse_lazy('OrderItem_list_view')    
+
+class OrderItemdeleteView(DeleteView):
+    model = OrderItem
+    context_object_name = 'OrderItem'    
+    template_name = 'OrderItem/OrderItem_confirm_delete.html'
+    success_url= reverse_lazy('OrderItem_list_view') 
+
+
+
+class OrderListView(ListView):
+    model = Order
+    template_name = 'Order/Order_list.html'
+    context_object_name = 'Order'
+    
+class OrderDetailView(DetailView):
+    model = Order
+    template_name = 'Order/Order_detail.html'
+    context_object_name = 'Order'    
+
+class OrderCreateView(CreateView):
+    model = Order
+    form_class = OrderForm
+    template_name = 'Order/Order_form.html'
+    success_url= reverse_lazy('Order_list_view')
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    form_class = OrderForm
+    template_name = 'Order/Order_form.html'
+    success_url= reverse_lazy('Order_list_view')    
+
+class OrderdeleteView(DeleteView):
+    model = Order
+    context_object_name = 'Order'    
+    template_name = 'Order/Order_confirm_delete.html'
+    success_url= reverse_lazy('Order_list_view') 
+
+
+
+
+
+
+
+class CartItemListView(ListView):
+    model = CartItem
+    template_name = 'CartItem/CartItem_list.html'
+    context_object_name = 'CartItem'
+    
+class CartItemDetailView(DetailView):
+    model = CartItem
+    template_name = 'CartItem/CartItem_detail.html'
+    context_object_name = 'CartItem'    
+
+class CartItemCreateView(CreateView):
+    model = CartItem
+    form_class = CartItemForm
+    template_name = 'CartItem/CartItem_form.html'
+    success_url= reverse_lazy('CartItem_list_view')
+
+class CartItemUpdateView(UpdateView):
+    model = CartItem
+    form_class = CartItemForm
+    template_name = 'CartItem/CartItem_form.html'
+    success_url= reverse_lazy('CartItem_list_view')    
+
+class CartItemdeleteView(DeleteView):
+    model = CartItem
+    context_object_name = 'CartItem'    
+    template_name = 'CartItem/CartItem_confirm_delete.html'
+    success_url= reverse_lazy('CartItem_list_view') 
+
+
+
+
+
+
+
+class CategoriesListView(ListView):
+    model = Categories
+    template_name = 'Categories/Categories_list.html'
+    context_object_name = 'Categories'
+    
+class CategoriesDetailView(DetailView):
+    model = Categories
+    template_name = 'Categories/Categories_detail.html'
+    context_object_name = 'Categories'    
+
+class CategoriesCreateView(CreateView):
+    model = Categories
+    form_class = CategoriesForm
+    template_name = 'Categories/Categories_form.html'
+    success_url= reverse_lazy('Categories_list_view')
+
+class CategoriesUpdateView(UpdateView):
+    model = Categories
+    form_class = CategoriesForm
+    template_name = 'Categories/Categories_form.html'
+    success_url= reverse_lazy('Categories_list_view')    
+
+class CategoriesdeleteView(DeleteView):
+    model = Categories
+    context_object_name = 'Categories'    
+    template_name = 'Categories/Categories_confirm_delete.html'
+    success_url= reverse_lazy('Categories_list_view') 
+
+
+
+
+
+class MenuItemListView(ListView):
+    model = MenuItem
+    template_name = 'MenuItem/MenuItem_list.html'
+    context_object_name = 'MenuItem'
+    
+class MenuItemDetailView(DetailView):
+    model = MenuItem
+    template_name = 'MenuItem/MenuItem_detail.html'
+    context_object_name = 'MenuItem'    
+
+class MenuItemCreateView(CreateView):
+    model = MenuItem
+    form_class = MenuItemForm
+    template_name = 'MenuItem/MenuItem_form.html'
+    success_url= reverse_lazy('MenuItem_list_view')
+
+class MenuItemUpdateView(UpdateView):
+    model = MenuItem
+    form_class = MenuItemForm
+    template_name = 'MenuItem/MenuItem_form.html'
+    success_url= reverse_lazy('MenuItem_list_view')    
+
+class MenuItemdeleteView(DeleteView):
+    model = MenuItem
+    context_object_name = 'MenuItem'    
+    template_name = 'MenuItem/MenuItem_confirm_delete.html'
+    success_url= reverse_lazy('MenuItem_list_view') 
 
 # Create your views here.
 def main_view (request):

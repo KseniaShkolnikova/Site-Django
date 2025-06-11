@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О компании - Интернет-магазин</title>
+    <title>О нас - SOY FLOWER | Ресторан японской кухни</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --text: #333;
-            --text-light: #7f8c8d;
+            --primary: #000000;
+            --secondary: #E31937;
+            --accent: #D4AF37;
+            --light: #FFFFFF;
+            --dark: #1A1A1A;
+            --text: #333333;
+            --text-light: #777777;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
             color: var(--text);
-            background-color: #f9f9f9;
+            background-color: #FAFAFA;
         }
         
         .container {
@@ -32,14 +32,15 @@
             padding: 0 15px;
         }
         
+        /* Header (точно как вы указали) */
         header {
             background-color: var(--primary);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            color: var(--light);
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 3px solid var(--secondary);
         }
         
         .header-container {
@@ -49,14 +50,15 @@
         }
         
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             display: flex;
             align-items: center;
+            letter-spacing: 2px;
         }
         
         .logo a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -64,6 +66,15 @@
         
         .logo i {
             margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
             color: var(--secondary);
         }
         
@@ -75,16 +86,18 @@
         }
         
         nav ul li {
-            margin-left: 25px;
+            margin-left: 30px;
             position: relative;
         }
         
         nav ul li a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 5px 0;
+            font-size: 16px;
+            letter-spacing: 1px;
         }
         
         nav ul li a:hover {
@@ -107,118 +120,202 @@
         }
         
         main {
-            padding: 40px 0;
+            padding: 60px 0;
             min-height: calc(100vh - 200px);
         }
         
+        /* Footer (точно как вы указали) */
         footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 60px;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 20px;
         }
         
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
             margin-bottom: 20px;
-            padding: 0 15px;
+            letter-spacing: 2px;
         }
         
-        .footer-section h3 {
+        .footer-logo span {
             color: var(--secondary);
+        }
+        
+        .footer-about p {
             margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: var(--light);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             position: relative;
             padding-bottom: 10px;
+            letter-spacing: 1px;
         }
         
-        .footer-section h3::after {
+        .footer-links h3::after, .footer-contact h3::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 50px;
+            width: 40px;
             height: 2px;
             background-color: var(--secondary);
         }
         
-        .footer-section p, .footer-section a {
-            color: var(--light);
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
             margin-bottom: 10px;
-            display: block;
+        }
+        
+        .footer-links a {
+            color: #ccc;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
         
-        .footer-section a:hover {
+        .footer-links a:hover {
             color: var(--secondary);
+            padding-left: 5px;
         }
         
-        .social-icons a {
-            display: inline-block;
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
             margin-right: 15px;
-            font-size: 20px;
-            color: var(--light);
-        }
-        
-        .social-icons a:hover {
-            color: var(--secondary);
+            font-size: 18px;
+            width: 20px;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--light);
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #777;
             font-size: 14px;
         }
         
-        h1 {
-            color: var(--primary);
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
+        /* Стили для основного контента (о нас) */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+            margin-bottom: 60px;
         }
         
-        h1::after {
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .hero-content h1 span {
+            color: var(--secondary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .about-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title::after {
             content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
+            display: block;
             width: 80px;
             height: 4px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            border-radius: 2px;
+            background: var(--secondary);
+            margin: 15px auto;
         }
         
         .about-content {
             display: flex;
-            margin: 40px 0;
             gap: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .about-text, .contacts-info {
-            flex: 1;
-            min-width: 300px;
+            margin-bottom: 40px;
         }
         
         .about-text {
+            flex: 1;
             background: white;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
         .contacts-info {
+            flex: 1;
             background: white;
             padding: 30px;
             border-radius: 8px;
@@ -229,41 +326,41 @@
             margin-bottom: 20px;
             padding-bottom: 20px;
             border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
         }
         
         .contact-item:last-child {
             border-bottom: none;
         }
         
-        .contact-item strong {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-        
-        .contact-item strong i {
-            margin-right: 10px;
+        .contact-icon {
             color: var(--secondary);
-            width: 20px;
-            text-align: center;
+            font-size: 20px;
+            margin-right: 15px;
+            min-width: 25px;
         }
         
-        .contact-item p {
+        .contact-details h3 {
+            margin: 0 0 5px;
+            color: var(--primary);
+        }
+        
+        .contact-details p {
             margin: 0;
-            padding-left: 30px;
             color: var(--text);
         }
         
+        .map-container {
+            margin-top: 60px;
+        }
+        
         .map {
-            margin-top: 40px;
             height: 400px;
             background: #ddd;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
         }
         
         .map iframe {
@@ -272,47 +369,8 @@
             border: none;
         }
         
-        .section-title {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            border-radius: 3px;
-        }
-        
-        ul {
-            padding-left: 20px;
-        }
-        
-        li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        li::before {
-            content: '\f058';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--secondary);
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
-        
         .team-section {
-            margin-top: 50px;
+            margin-top: 60px;
         }
         
         .team-grid {
@@ -357,36 +415,6 @@
             font-weight: 500;
         }
         
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 50px 0;
-            gap: 20px;
-        }
-        
-        .stat-item {
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-            padding: 30px 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-        
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
@@ -404,8 +432,507 @@
                 flex-direction: column;
             }
             
-            .footer-section {
-                flex: 100%;
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+        <style>
+        :root {
+            --primary: #000000;
+            --secondary: #E31937;
+            --accent: #D4AF37;
+            --light: #FFFFFF;
+            --dark: #1A1A1A;
+            --text: #333333;
+            --text-light: #777777;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #FAFAFA;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header (точно как вы указали) */
+        header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            letter-spacing: 2px;
+        }
+        
+        .logo a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        main {
+            padding: 40px 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        /* Footer (точно как вы указали) */
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: var(--light);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 18px;
+            width: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* Стили для корзины */
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .cart-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .cart-items {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .cart-summary {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .cart-item-price {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 30px;
+        }
+        
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            background-color: var(--light);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .quantity button:hover {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .quantity input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .remove-item {
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .remove-item:hover {
+            color: #c0392b;
+        }
+        
+        .remove-item i {
+            margin-right: 5px;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .summary-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 15px;
+            color: var(--primary);
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            margin-top: 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #c1121f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            color: #c1121f;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .empty-cart p {
+            color: var(--text);
+            margin-bottom: 25px;
+        }
+        
+        .empty-cart-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .empty-cart-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-image {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -413,162 +940,175 @@
 <body>
     <header>
         <div class="container header-container">
-            <div class="logo"><a href="index.html"><i class="fas fa-store"></i>Интернет-магазин</a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-utensils"></i>
+                    <span class="logo-text">SOY <span>FLOWER</span></span>
+                </a>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="{% url 'main' %}"><i class="fas fa-home"></i> Главная</a></li>
-                    <li><a href="{% url 'about' %}" class="active"><i class="fas fa-info-circle"></i> О компании</a></li>
-                    <li><a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i> Корзина</a></li>
-                    <li><a href="{% url 'products' %}"><i class="fas fa-box-open"></i> Товары</a></li>
+                    <li><a href="{% url 'main' %}">Главная</a></li>
+                    <li><a href="{% url 'products' %}">Меню</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'cart' %}" class="active">Корзина</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
+        <section class="about-hero">
+            <div class="hero-content">
+                <h1>О <span>нас</span></h1>
+                <p>Узнайте больше о нашем ресторане японской кухни и нашей философии</p>
+            </div>
+        </section>
+
         <div class="container">
-            <h1>О нашей компании</h1>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Лет на рынке</div>
+            <section class="about-section">
+                <div class="section-title">
+                    <h2>Наша история</h2>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">50 000+</div>
-                    <div class="stat-label">Довольных клиентов</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5 000+</div>
-                    <div class="stat-label">Товаров в каталоге</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Поддержка</div>
-                </div>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">Наша история</h2>
-                    <p>Мы - современный интернет-магазин, работающий на рынке уже более 10 лет. Наша миссия - предоставлять клиентам качественные товары по доступным ценам с отличным сервисом.</p>
-                    <p>Основанная в 2010 году, наша компания начинала с небольшого магазина, а сегодня мы являемся одним из лидеров в своей нише. Благодаря постоянному развитию и ориентации на потребности клиентов, мы смогли завоевать доверие тысяч покупателей по всей стране.</p>
-                    
-                    <h2 class="section-title">Наши принципы</h2>
-                    <ul>
-                        <li>Качество товаров - наш приоритет. Мы тщательно отбираем поставщиков и проверяем каждый товар</li>
-                        <li>Клиент всегда прав. Наша служба поддержки решает любые вопросы быстро и профессионально</li>
-                        <li>Быстрая и надежная доставка. Собственная курьерская служба и партнерство с лучшими транспортными компаниями</li>
-                        <li>Профессиональное обслуживание. Наши менеджеры всегда готовы помочь с выбором и ответить на вопросы</li>
-                        <li>Честные цены. Мы работаем без наценок, напрямую с производителями</li>
-                    </ul>
-                </div>
-                
-                <div class="contacts-info">
-                    <h2 class="section-title">Контакты</h2>
-                    
-                    <div class="contact-item">
-                        <strong><i class="fas fa-map-marker-alt"></i> Адрес:</strong>
-                        <p>г. Москва, ул. Примерная, д. 123, офис 456</p>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>SOY FLOWER - это современный ресторан японской кухни, основанный в 2015 году. Наша миссия - привнести подлинные вкусы Японии в сердце Москвы, сочетая традиционные рецепты с современными кулинарными тенденциями.</p>
+                        <p>Начиная с небольшого заведения на 30 мест, сегодня мы выросли в сеть из трех ресторанов, обслуживающих более 1000 гостей ежедневно. Наш секрет успеха - в постоянном стремлении к совершенству и уважении к японским кулинарным традициям.</p>
+                        <p>Мы гордимся тем, что наши суши-мастера проходят обучение в Японии, а все ингредиенты поставляются напрямую от проверенных поставщиков, включая свежую рыбу с рынка Цукидзи в Токио.</p>
                     </div>
-                    
-                    <div class="contact-item">
-                        <strong><i class="fas fa-phone"></i> Телефон:</strong>
-                        <p>+7 (123) 456-78-90</p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <strong><i class="fas fa-envelope"></i> Email:</strong>
-                        <p>info@example.com</p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <strong><i class="fas fa-clock"></i> Режим работы:</strong>
-                        <p>Пн-Пт: 9:00-18:00</p>
-                        <p>Сб-Вс: выходной</p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <strong><i class="fas fa-headset"></i> Техподдержка:</strong>
-                        <p>Круглосуточно</p>
-                        <p>support@example.com</p>
+                    <div class="contacts-info">
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="contact-details">
+                                <h3>Адрес</h3>
+                                <p>г. Москва, ул. Сакуры, 15</p>
+                                <p>Ближайшее метро: Сакура-Хаус</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-details">
+                                <h3>Телефон</h3>
+                                <p>+7 (999) 123-45-67</p>
+                                <p>+7 (495) 765-43-21</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p>reservations@soyflower.ru</p>
+                                <p>info@soyflower.ru</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                            <div class="contact-details">
+                                <h3>Часы работы</h3>
+                                <p>Пн-Чт: 11:00 - 23:00</p>
+                                <p>Пт-Сб: 11:00 - 00:00</p>
+                                <p>Вс: 11:00 - 22:00</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="team-section">
-                <h2 class="section-title">Наша команда</h2>
+            </section>
+
+            <section class="map-container">
+                <div class="section-title">
+                    <h2>Как нас найти</h2>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373789035745!2d37.61763331593095!3d55.75197498055215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311f!2z0JrRgNCw0YHQvdCw0Y8g0J_RgNC10YHQvdC40LbQsNGA0LjRjywg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1620000000000!5m2!1sru!2sru" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </section>
+
+            <section class="team-section">
+                <div class="section-title">
+                    <h2>Наша команда</h2>
+                </div>
                 <div class="team-grid">
                     <div class="team-member">
-                        <div class="member-photo" style="background-image: url('https://photo-ideal.ru/upload/iblock/fd6/xdelovoe_foto_zhenshchin_17.jpg.pagespeed.ic.z1iEJyPrdA.jpg');"></div>
+                        <div class="member-photo" style="background-image: url('https://1news.az/images/2018/04/06/20180406101337683/TAMB.jpg');"></div>
                         <div class="member-info">
-                            <h3>Анна Смирнова</h3>
-                            <p>Генеральный директор</p>
+                            <h3>Такаши Ямамото</h3>
+                            <p>Шеф-повар из Токио</p>
                         </div>
                     </div>
                     <div class="team-member">
-                        <div class="member-photo" style="background-image: url('https://st25.styapokupayu.ru/images/blog_posts/covers/000/300/022_large.png?1658306515');"></div>
+                        <div class="member-photo" style="background-image: url('https://servclass.ru/wp-content/uploads/2021/04/2.-%D0%AD%D1%84%D1%84%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80-%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D0%B0.-%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9-%D0%B4%D0%B5%D0%BD%D1%8C-.-2-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F-scaled.jpg');"></div>
                         <div class="member-info">
-                            <h3>Иван Петров</h3>
-                            <p>Менеджер по закупкам</p>
+                            <h3>Анна Иванова</h3>
+                            <p>Менеджер ресторана</p>
                         </div>
                     </div>
                     <div class="team-member">
-                        <div class="member-photo" style="background-image: url('https://photo-ideal.ru/upload/iblock/3b7/xdelovoe_foto_zhenshchin_34.jpg.pagespeed.ic.kQt-J9cEce.jpg');"></div>
+                        <div class="member-photo" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCbfG5eSMwh1aSJaFAnYjb4wqqSPkFLZ-Zag&s');"></div>
                         <div class="member-info">
-                            <h3>Елена Козлова</h3>
-                            <p>Руководитель отдела продаж</p>
+                            <h3>Дмитрий Соколов</h3>
+                            <p>Суши-мастер</p>
                         </div>
                     </div>
                     <div class="team-member">
-                        <div class="member-photo" style="background-image: url('https://img.freepik.com/free-photo/portrait-man-standing-amusement-park-looking-camera_23-2148193980.jpg?semt=ais_items_boosted&w=740');"></div>
+                        <div class="member-photo" style="background-image: url('https://trendymen.ru/images/article1/138399/attachments/3.jpg');"></div>
                         <div class="member-info">
-                            <h3>Дмитрий Волков</h3>
-                            <p>Технический директор</p>
+                            <h3>Юки Оно</h3>
+                            <p>Бармен</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <h2 class="section-title">Как нас найти</h2>
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373789035745!2d37.61763331593095!3d55.75197498055215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311f!2z0JrRgNCw0YHQvdCw0Y8g0J_RgNC10YHQvdC40LbQsNGA0LjRjywg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1620000000000!5m2!1sru!2sru" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+            </section>
         </div>
     </main>
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>О компании</h3>
-                    <p>Лидер на рынке интернет-торговли с 2010 года. Мы предлагаем качественные товары по лучшим ценам с гарантией и отличным сервисом.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
+                <div class="footer-about">
+                    <div class="footer-logo">SOY <span>FLOWER</span></div>
+                    <p>Ресторан японской кухни с доставкой по всему городу. Свежие ингредиенты, традиционные рецепты и неповторимый вкус.</p>
+                    <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
                     </div>
                 </div>
                 
-                <div class="footer-section">
+                <div class="footer-links">
                     <h3>Меню</h3>
-                    <a href="{% url 'main' %}">Главная</a>
-                    <a href="{% url 'about' %}">О компании</a>
-                    <a href="{% url 'cart' %}">Корзина</a>
-                    <a href="{% url 'products' %}">Товары</a>
+                    <ul>
+                        <li><a href="#">Суши и сашими</a></li>
+                        <li><a href="#">Роллы</a></li>
+                        <li><a href="#">Горячие блюда</a></li>
+                        <li><a href="#">Сеты</a></li>
+                        <li><a href="#">Напитки</a></li>
+                    </ul>
                 </div>
                 
-                <div class="footer-section">
+                <div class="footer-contact">
                     <h3>Контакты</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</p>
-                    <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
-                    <p><i class="fas fa-envelope"></i> info@example.com</p>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>ул. Сакуры, 15, г. Москва</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+7 (999) 123-45-67</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@soyflower.ru</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Ежедневно с 10:00 до 23:00</span>
+                    </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Интернет-магазин. Все права защищены.</p>
+                <p>&copy; 2023 SOY FLOWER. Все права защищены.</p>
             </div>
         </div>
     </footer>

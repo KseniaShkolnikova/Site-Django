@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали заказа</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #d10000 0%, #7a0000 100%);
+            padding: 18px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .detail-container {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-top: 4px solid #ff4d4d;
+        }
+        
+        h1 {
+            color: #ff4d4d;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .detail-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #222;
+            border-left: 3px solid #ff4d4d;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .detail-label {
+            color: #ff9999;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .detail-value {
+            font-size: 18px;
+        }
+        
+        .action-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .action-link {
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .back-link {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .edit-link {
+            background-color: #444;
+            color: #fff;
+        }
+        
+        .delete-link {
+            background-color: #b30000;
+            color: #fff;
+        }
+        
+        .action-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-link:hover {
+            background-color: #444;
+        }
+        
+        .edit-link:hover {
+            background-color: #555;
+        }
+        
+        .delete-link:hover {
+            background-color: #990000;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #333;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .action-links {
+                flex-direction: column;
+            }
+            
+            .action-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'CartItem_list_view' %}">Содержимое корзины</a></li>
+                <li><a href="{% url 'Categories_list_view' %}">Категории</a></li>
+                <li><a href="{% url 'MenuItem_list_view' %}">Меню</a></li>
+                <li><a href="{% url 'Order_list_view' %}">Заказы</a></li>
+                <li><a href="{% url 'OrderItem_list_view' %}">Содержимое заказов</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="detail-container">
+            <h1>{{OrderItem.order}}</h1>
+            
+            <div class="detail-item">
+                <span class="detail-label">Позиция меню:</span>
+                <span class="detail-value">{{OrderItem.menu_item}}</span>
+            </div>
+            
+            <div class="detail-item">
+                <span class="detail-label">Количество:</span>
+                <span class="detail-value">{{OrderItem.quantity}}</span>
+            </div>
+            
+            <div class="action-links">
+                <a href="{% url 'OrderItem_list_view' %}" class="action-link back-link">Вернуться к списку</a>
+                <a href="{% url 'OrderItem_update_view' OrderItem.pk %}" class="action-link edit-link">Редактировать</a>
+                <a href="{% url 'OrderItem_delete_view' OrderItem.pk %}" class="action-link delete-link">Удалить</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

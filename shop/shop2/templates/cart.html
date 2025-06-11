@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина - Интернет-магазин</title>
+    <title>Корзина - SOY FLOWER | Ресторан японской кухни</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --text: #333;
-            --text-light: #7f8c8d;
+            --primary: #000000;
+            --secondary: #E31937;
+            --accent: #D4AF37;
+            --light: #FFFFFF;
+            --dark: #1A1A1A;
+            --text: #333333;
+            --text-light: #777777;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
             color: var(--text);
-            background-color: #f9f9f9;
+            background-color: #FAFAFA;
         }
         
         .container {
@@ -32,14 +32,15 @@
             padding: 0 15px;
         }
         
+        /* Header (точно как вы указали) */
         header {
             background-color: var(--primary);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            color: var(--light);
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 3px solid var(--secondary);
         }
         
         .header-container {
@@ -49,14 +50,15 @@
         }
         
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             display: flex;
             align-items: center;
+            letter-spacing: 2px;
         }
         
         .logo a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -64,6 +66,15 @@
         
         .logo i {
             margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
             color: var(--secondary);
         }
         
@@ -75,16 +86,18 @@
         }
         
         nav ul li {
-            margin-left: 25px;
+            margin-left: 30px;
             position: relative;
         }
         
         nav ul li a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 5px 0;
+            font-size: 16px;
+            letter-spacing: 1px;
         }
         
         nav ul li a:hover {
@@ -111,81 +124,122 @@
             min-height: calc(100vh - 200px);
         }
         
+        /* Footer (точно как вы указали) */
         footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 60px;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 20px;
         }
         
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
             margin-bottom: 20px;
-            padding: 0 15px;
+            letter-spacing: 2px;
         }
         
-        .footer-section h3 {
+        .footer-logo span {
             color: var(--secondary);
+        }
+        
+        .footer-about p {
             margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: var(--light);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             position: relative;
             padding-bottom: 10px;
+            letter-spacing: 1px;
         }
         
-        .footer-section h3::after {
+        .footer-links h3::after, .footer-contact h3::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 50px;
+            width: 40px;
             height: 2px;
             background-color: var(--secondary);
         }
         
-        .footer-section p, .footer-section a {
-            color: var(--light);
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
             margin-bottom: 10px;
-            display: block;
+        }
+        
+        .footer-links a {
+            color: #ccc;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
         
-        .footer-section a:hover {
+        .footer-links a:hover {
             color: var(--secondary);
+            padding-left: 5px;
         }
         
-        .social-icons a {
-            display: inline-block;
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
             margin-right: 15px;
-            font-size: 20px;
-            color: var(--light);
-        }
-        
-        .social-icons a:hover {
-            color: var(--secondary);
+            font-size: 18px;
+            width: 20px;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--light);
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #777;
             font-size: 14px;
         }
         
+        /* Стили для корзины */
         h1 {
             color: var(--primary);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 30px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
         
         h1::after {
@@ -195,7 +249,7 @@
             bottom: 0;
             width: 80px;
             height: 4px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
+            background: var(--secondary);
             border-radius: 2px;
         }
         
@@ -238,7 +292,7 @@
         .cart-item-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 4px;
         }
         
@@ -254,7 +308,7 @@
         }
         
         .cart-item-price {
-            color: var(--accent);
+            color: var(--secondary);
             font-weight: bold;
             margin-bottom: 15px;
             font-size: 1.2rem;
@@ -275,7 +329,7 @@
             width: 30px;
             height: 30px;
             background-color: var(--light);
-            border: none;
+            border: 1px solid #ddd;
             border-radius: 4px;
             cursor: pointer;
             font-size: 1rem;
@@ -286,6 +340,7 @@
         .quantity button:hover {
             background-color: var(--secondary);
             color: white;
+            border-color: var(--secondary);
         }
         
         .quantity input {
@@ -299,7 +354,7 @@
         }
         
         .remove-item {
-            color: var(--accent);
+            color: var(--secondary);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -329,7 +384,7 @@
             bottom: 0;
             width: 50px;
             height: 3px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
+            background: var(--secondary);
             border-radius: 3px;
         }
         
@@ -353,7 +408,7 @@
         .checkout-btn {
             display: block;
             width: 100%;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
+            background: var(--secondary);
             color: white;
             text-align: center;
             padding: 12px;
@@ -368,7 +423,7 @@
         }
         
         .checkout-btn:hover {
-            opacity: 0.9;
+            background-color: #c1121f;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
@@ -383,7 +438,7 @@
         }
         
         .continue-shopping:hover {
-            color: var(--accent);
+            color: #c1121f;
         }
         
         .empty-cart {
@@ -447,23 +502,24 @@
                 margin-right: 0;
                 margin-bottom: 15px;
             }
-            
-            .footer-section {
-                flex: 100%;
-            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container header-container">
-            <div class="logo"><a href="index.html"><i class="fas fa-store"></i>Интернет-магазин</a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-utensils"></i>
+                    <span class="logo-text">SOY <span>FLOWER</span></span>
+                </a>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="{% url 'main' %}"><i class="fas fa-home"></i> Главная</a></li>
-                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> О компании</a></li>
-                    <li><a href="{% url 'cart' %}" class="active"><i class="fas fa-shopping-cart"></i> Корзина</a></li>
-                    <li><a href="{% url 'products' %}"><i class="fas fa-box-open"></i> Товары</a></li>
+                    <li><a href="{% url 'main' %}">Главная</a></li>
+                    <li><a href="{% url 'products' %}">Меню</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'cart' %}" class="active">Корзина</a></li>
                 </ul>
             </nav>
         </div>
@@ -475,14 +531,14 @@
             
             <div class="cart-container">
                 <div class="cart-items">
-                    <!-- Товар 1 в корзине -->
+                    <!-- Блюдо 1 в корзине -->
                     <div class="cart-item">
                         <div class="cart-item-image">
-                            <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/1483026812/100024973204b0.jpg" alt="Товар 1">
+                            <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Сет Филадельфия">
                         </div>
                         <div class="cart-item-details">
-                            <div class="cart-item-title">Смартфон XYZ Model 10</div>
-                            <div class="cart-item-price">25 990 ₽</div>
+                            <div class="cart-item-title">Сет Филадельфия</div>
+                            <div class="cart-item-price">1 890 ₽</div>
                             <div class="cart-item-actions">
                                 <div class="quantity">
                                     <button>-</button>
@@ -494,18 +550,37 @@
                         </div>
                     </div>
                     
-                    <!-- Товар 2 в корзине -->
+                    <!-- Блюдо 2 в корзине -->
                     <div class="cart-item">
                         <div class="cart-item-image">
-                            <img src="https://bosestore.ru/upload/iblock/939/glluctgdmz836tcdxw3aobckz6vs1ai3/bose_quietcomfort_ultra_headphones_black_01.jpg" alt="Товар 2">
+                            <img src="https://www.foodland.ru/upload/iblock/a82/a82c720dfe8ffb750dd545ee43b59e22.jpg" alt="Ролл Калифорния">
                         </div>
                         <div class="cart-item-details">
-                            <div class="cart-item-title">Наушники Wireless Sound</div>
-                            <div class="cart-item-price">7 990 ₽</div>
+                            <div class="cart-item-title">Ролл Калифорния</div>
+                            <div class="cart-item-price">690 ₽</div>
                             <div class="cart-item-actions">
                                 <div class="quantity">
                                     <button>-</button>
                                     <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                                <a href="#" class="remove-item"><i class="fas fa-trash-alt"></i> Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Блюдо 3 в корзине -->
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Суп Рамен">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">Суп Рамен</div>
+                            <div class="cart-item-price">590 ₽</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity">
+                                    <button>-</button>
+                                    <input type="text" value="1">
                                     <button>+</button>
                                 </div>
                                 <a href="#" class="remove-item"><i class="fas fa-trash-alt"></i> Удалить</a>
@@ -517,8 +592,8 @@
                 <div class="cart-summary">
                     <div class="summary-title">Итого</div>
                     <div class="summary-row">
-                        <span>Товары (3)</span>
-                        <span>41 970 ₽</span>
+                        <span>Блюда (4)</span>
+                        <span>3 860 ₽</span>
                     </div>
                     <div class="summary-row">
                         <span>Доставка</span>
@@ -526,10 +601,10 @@
                     </div>
                     <div class="summary-row summary-total">
                         <span>К оплате</span>
-                        <span>41 970 ₽</span>
+                        <span>3 860 ₽</span>
                     </div>
                     <button class="checkout-btn">Оформить заказ</button>
-                    <a href="{% url 'products' %}" class="continue-shopping">Продолжить покупки</a>
+                    <a href="{% url 'products' %}" class="continue-shopping">Продолжить выбор</a>
                 </div>
             </div>
         </div>
@@ -538,35 +613,51 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>О компании</h3>
-                    <p>Лидер на рынке интернет-торговли с 2010 года. Мы предлагаем качественные товары по лучшим ценам с гарантией и отличным сервисом.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
+                <div class="footer-about">
+                    <div class="footer-logo">SOY <span>FLOWER</span></div>
+                    <p>Ресторан японской кухни с доставкой по всему городу. Свежие ингредиенты, традиционные рецепты и неповторимый вкус.</p>
+                    <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
                     </div>
                 </div>
                 
-                <div class="footer-section">
+                <div class="footer-links">
                     <h3>Меню</h3>
-                    <a href="{% url 'main' %}">Главная</a>
-                    <a href="{% url 'about' %}">О компании</a>
-                    <a href="{% url 'cart' %}">Корзина</a>
-                    <a href="{% url 'products' %}">Товары</a>
+                    <ul>
+                        <li><a href="#">Суши и сашими</a></li>
+                        <li><a href="#">Роллы</a></li>
+                        <li><a href="#">Горячие блюда</a></li>
+                        <li><a href="#">Сеты</a></li>
+                        <li><a href="#">Напитки</a></li>
+                    </ul>
                 </div>
                 
-                <div class="footer-section">
+                <div class="footer-contact">
                     <h3>Контакты</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</p>
-                    <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
-                    <p><i class="fas fa-envelope"></i> info@example.com</p>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>ул. Сакуры, 15, г. Москва</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+7 (999) 123-45-67</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@soyflower.ru</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Ежедневно с 10:00 до 23:00</span>
+                    </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Интернет-магазин. Все права защищены.</p>
+                <p>&copy; 2023 SOY FLOWER. Все права защищены.</p>
             </div>
         </div>
     </footer>
