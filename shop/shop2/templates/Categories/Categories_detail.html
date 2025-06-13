@@ -1,260 +1,40 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ Categories.name }} - Детали категории</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #0a0a0a;
-            color: #f0f0f0;
-            min-height: 100vh;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #d10000 0%, #7a0000 100%);
-            padding: 18px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: space-between;
-            list-style: none;
-        }
-        
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 10px 20px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-        }
-        
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .detail-container {
-            background-color: #1a1a1a;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border-top: 4px solid #ff4d4d;
-        }
-        
-        h1 {
-            color: #ff4d4d;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-        }
-        
-        .category-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .detail-row {
-            display: flex;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #2a2a2a;
-        }
-        
-        .detail-label {
-            width: 200px;
-            color: #ff9999;
-            font-weight: 500;
-        }
-        
-        .detail-value {
-            flex: 1;
-            color: #fff;
-        }
-        
-        .boolean-value {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
-        .boolean-true {
-            background-color: #006600;
-            color: #00cc00;
-        }
-        
-        .boolean-false {
-            background-color: #660000;
-            color: #ff6666;
-        }
-        
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .action-link {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-align: center;
-            flex: 1;
-        }
-        
-        .back-link {
-            background-color: #333;
-            color: white;
-        }
-        
-        .edit-link {
-            background: linear-gradient(to right, #ff4d4d, #d10000);
-            color: white;
-        }
-        
-        .delete-link {
-            background-color: #333;
-            color: #ff4d4d;
-            border: 1px solid #ff4d4d;
-        }
-        
-        .back-link:hover {
-            background-color: #444;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .edit-link:hover {
-            background: linear-gradient(to right, #ff5e5e, #e60000);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 77, 77, 0.3);
-        }
-        
-        .delete-link:hover {
-            background-color: #ff4d4d;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 77, 77, 0.3);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-            color: #666;
-            font-size: 14px;
-            border-top: 1px solid #333;
-        }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-            
-            .detail-row {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .detail-label {
-                width: 100%;
-            }
-            
-            .actions {
-                flex-direction: column;
-            }
-            
-            .action-link {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'CartItem_list_view' %}">Содержимое корзины</a></li>
-                <li><a href="{% url 'Categories_list_view' %}">Категории</a></li>
-                <li><a href="{% url 'MenuItem_list_view' %}">Меню</a></li>
-                <li><a href="{% url 'Order_list_view' %}">Заказы</a></li>
-                <li><a href="{% url 'OrderItem_list_view' %}">Содержимое заказов</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends 'admin_base.html' %}
+{% load static %}
 
-    <div class="container">
-        <div class="detail-container">
-            <h1>{{ Categories.name }}</h1>
-            
-            {% if Categories.photo %}
-            <img src="{{ Categories.photo.url }}" alt="{{ Categories.name }}" class="category-image">
-            {% endif %}
-            
-            <div class="detail-row">
-                <div class="detail-label">Описание:</div>
-                <div class="detail-value">{{ Categories.description }}</div>
-            </div>
-            
-            {% if Categories.is_active is not None %}
-            <div class="detail-row">
-                <div class="detail-label">Активна:</div>
-                <div class="detail-value">
-                    <span class="boolean-value {% if Categories.is_active %}boolean-true{% else %}boolean-false{% endif %}">
-                        {% if Categories.is_active %}Да{% else %}Нет{% endif %}
-                    </span>
-                </div>
-            </div>
-            {% endif %}
-            
-            <div class="actions">
-                <a href="{% url 'Categories_list_view' %}" class="action-link back-link">Вернуться к списку</a>
-                <a href="{% url 'Categories_update_view' Categories.pk %}" class="action-link edit-link">Редактировать</a>
-                <a href="{% url 'Categories_delete_view' Categories.pk %}" class="action-link delete-link">Удалить</a>
-            </div>
+{% block title_name %}
+{{ Categories.name }} - Детали категории
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h1>{{ Categories.name }}</h1>
+        
+        {% if Categories.photo %}
+        <div class="image-container">
+            <img src="{{ Categories.photo.url }}" alt="{{ Categories.name }}" class="detail-image">
+        </div>
+        {% endif %}
+        
+        <div class="detail-item">
+            <span class="detail-label">Описание:</span>
+            <span class="detail-value">{{ Categories.description|default:"-" }}</span>
+        </div>
+        
+        {% if Categories.is_active is not None %}
+        <div class="detail-item">
+            <span class="detail-label">Активна:</span>
+            <span class="status-badge {% if Categories.is_active %}status-active{% else %}status-inactive{% endif %}">
+                {% if Categories.is_active %}Да{% else %}Нет{% endif %}
+            </span>
+        </div>
+        {% endif %}
+        
+        <div class="action-buttons">
+            <a href="{% url 'Categories_list_view' %}" class="back-link">Вернуться к списку</a>
+            <a href="{% url 'Categories_update_view' Categories.pk %}" class="back-link">Редактировать</a>
+            <a href="{% url 'Categories_delete_view' Categories.pk %}" class="back-link">Удалить</a>
         </div>
     </div>
-
-</body>
-</html>
+</div>
+{% endblock %}

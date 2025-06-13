@@ -1,540 +1,113 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Товары - Интернет-магазин</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #000000;
-            --secondary: #E31937;
-            --accent: #D4AF37;
-            --light: #FFFFFF;
-            --dark: #1A1A1A;
-            --text: #333333;
-            --text-light: #777777;
-        }
-        
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: #FAFAFA;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Header (точно как в примере) */
-        header {
-            background-color: var(--primary);
-            color: var(--light);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 3px solid var(--secondary);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            letter-spacing: 2px;
-        }
-        
-        .logo a {
-            color: var(--light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--secondary);
-        }
-        
-        .logo-text {
-            font-family: 'Noto Sans JP', sans-serif;
-            font-weight: 700;
-        }
-        
-        .logo-text span {
-            color: var(--secondary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-            position: relative;
-        }
-        
-        nav ul li a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 5px 0;
-            font-size: 16px;
-            letter-spacing: 1px;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s ease;
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        main {
-            padding: 60px 0;
-            min-height: calc(100vh - 200px);
-        }
-        
-        /* Footer (точно как в примере) */
-        footer {
-            background-color: var(--primary);
-            color: var(--light);
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
-        .footer-about p {
-            margin-bottom: 20px;
-            color: #ccc;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: #333;
-            color: var(--light);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        .footer-links h3, .footer-contact h3 {
-            color: var(--light);
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        
-        .footer-links h3::after, .footer-contact h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--secondary);
-        }
-        
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-        
-        .contact-item {
-            display: flex;
-            margin-bottom: 15px;
-            color: #ccc;
-        }
-        
-        .contact-item i {
-            color: var(--secondary);
-            margin-right: 15px;
-            font-size: 18px;
-            width: 20px;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #777;
-            font-size: 14px;
-        }
+{% extends 'base.html' %}
+{% load static %}
 
-        /* Стили для страницы товаров */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-        
-        .page-header h1 {
-            color: var(--primary);
-            font-size: 2.5rem;
-            margin-bottom: 0;
-            position: relative;
-            padding-bottom: 15px;
-            letter-spacing: 1px;
-        }
-        
-        .page-header h1::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary);
-        }
-        
-        .products-count {
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-        
-        .products-container {
-            display: flex;
-            gap: 40px;
-        }
-        
-        .categories-sidebar {
-            width: 250px;
-            flex-shrink: 0;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .products-main {
-            flex-grow: 1;
-        }
-        
-        .category-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-        }
-        
-        .category-list li {
-            margin-bottom: 5px;
-        }
-        
-        .category-list a {
-            display: block;
-            padding: 10px 15px;
-            text-decoration: none;
-            color: var(--text);
-            border-left: 3px solid transparent;
-            transition: all 0.3s;
-            border-radius: 4px;
-        }
-        
-        .category-list a:hover, .category-list a.active {
-            background: rgba(227, 25, 55, 0.1);
-            border-left: 3px solid var(--secondary);
-            color: var(--primary);
-        }
-        
-        .category-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            position: relative;
-            letter-spacing: 1px;
-        }
-        
-        .category-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--secondary);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .product-image {
-            height: 200px;
-            background-color: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .product-image img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        
-        .product-info {
-            padding: 20px;
-        }
-        
-        .product-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-        
-        .product-price {
-            color: var(--secondary);
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-        
-        .add-to-cart {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            width: 100%;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s;
-            letter-spacing: 1px;
-        }
-        
-        .add-to-cart:hover {
-            background-color: var(--secondary);
-        }
-        
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-            }
-            
-            nav ul li {
-                margin: 0 10px;
-            }
-            
-            .products-container {
-                flex-direction: column;
-            }
-            
-            .categories-sidebar {
-                width: 100%;
-                margin-bottom: 30px;
-            }
-        }
-    </style>
-</head>
+{% block title_name%}
+Меню - SOY FLOWER | Ресторан японской кухни
+{%endblock%}   
+
+{% block content%}
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html">
-                    <i class="fas fa-utensils"></i>
-                    <span class="logo-text">SOY <span>FLOWER</span></span>
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{% url 'main' %}">Главная</a></li>
-                    <li><a href="{% url 'products' %}">Меню</a></li>
-                    <li><a href="{% url 'about' %}">О нас</a></li>
-                    <li><a href="{% url 'cart' %}" class="active">Корзина</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
     <main>
         <div class="container">
             <div class="page-header">
-                <h1>Каталог товаров</h1>
-                <div class="products-count">Найдено: 24 товара</div>
+                <h1>Наше меню</h1>
+                <div class="products-count">Доступно: 24 позиции</div>
             </div>
             
             <div class="products-container">
                 <div class="categories-sidebar">
                     <h3 class="category-title">Категории</h3>
                     <ul class="category-list">
-                        <li><a href="{% url 'all' %}" class="active">Все товары</a></li>
-                        <li><a href="{% url 'electonica' %}">Электроника</a></li>
-                        <li><a href="{% url 'tehnica' %}">Бытовая техника</a></li>
-                        <li><a href="{% url 'clother' %}">Одежда и обувь</a></li>
-                        <li><a href="{% url 'for_home' %}">Для дома</a></li>
-                        <li><a href="{% url 'sport' %}">Спорт и отдых</a></li>
-                        <li><a href="{% url 'health' %}">Красота и здоровье</a></li>
-                        <li><a href="{% url 'children' %}">Детские товары</a></li>
+                        <li><a href="{% url 'all' %}" class="active">Все блюда</a></li>
+                        <li><a href="">Суши</a></li>
+                        <li><a href="">Роллы</a></li>
+                        <li><a href="">Сашими</a></li>
+                        <li><a href="">Супы</a></li>
+                        <li><a href="">Горячие блюда</a></li>
+                        <li><a href="">Салаты</a></li>
+                        <li><a href="">Десерты</a></li>
+                        <li><a href="">Напитки</a></li>
                     </ul>
                 </div>
                 
                 <div class="products-main">
-                    <h2 class="category-title">Все товары</h2>
+                    <h2 class="category-title">Все блюда</h2>
                     
                     <div class="products-grid">
-                        <!-- Товар 1 -->
+                        <!-- Блюдо 1 -->
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/1483026812/100024973204b0.jpg" alt="Товар 1">
+                                <img src="https://img.freepik.com/free-photo/top-view-salmon-sushi-with-soy-sauce_23-2148773775.jpg" alt="Суши Филадельфия">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Смартфон XYZ Model 10</div>
-                                <div class="product-price">25 990 ₽</div>
+                                <div class="product-title">Суши Филадельфия</div>
+                                <div class="product-description">Лосось, сливочный сыр, рис</div>
+                                <div class="product-price">350 ₽</div>
                                 <button class="add-to-cart">В корзину</button>
                             </div>
                         </div>
                         
-                        <!-- Товар 2 -->
+                        <!-- Блюдо 2 -->
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="https://00.img.avito.st/image/1/1.5mxNDbaxSoUbqMCCDWLcNzesSIX_uE6H.TT2tzSuVeN_7utQOa6JmnRsFPjhcRcvxPINhwPvVQ8E?cqp=2.d_Zf6Bm1shCMrOHY-Vj18hvV6BjwI358IHMSOoasWlTdJXwRxVlJDedyKiY=" alt="Товар 2">
+                                <img src="https://img.freepik.com/free-photo/side-view-salmon-sushi-roll-with-tobiko_141793-14250.jpg" alt="Ролл Калифорния">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Ноутбук SuperBook Pro</div>
-                                <div class="product-price">65 490 ₽</div>
+                                <div class="product-title">Ролл Калифорния</div>
+                                <div class="product-description">Краб, авокадо, огурец, икра тобико</div>
+                                <div class="product-price">420 ₽</div>
                                 <button class="add-to-cart">В корзину</button>
                             </div>
                         </div>
                         
-                        <!-- Товар 3 -->
+                        <!-- Блюдо 3 -->
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="https://bosestore.ru/upload/iblock/939/glluctgdmz836tcdxw3aobckz6vs1ai3/bose_quietcomfort_ultra_headphones_black_01.jpg" alt="Товар 3">
+                                <img src="https://img.freepik.com/free-photo/sliced-salmon-sashimi-with-wasabi_1150-26579.jpg" alt="Сашими из лосося">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Наушники Wireless Sound</div>
-                                <div class="product-price">7 990 ₽</div>
+                                <div class="product-title">Сашими из лосося</div>
+                                <div class="product-description">Свежий лосось, васаби, имбирь</div>
+                                <div class="product-price">580 ₽</div>
                                 <button class="add-to-cart">В корзину</button>
                             </div>
                         </div>
                         
-                        <!-- Товар 4 -->
+                        <!-- Блюдо 4 -->
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="https://www.oceangifts.ru/cmedia/2000x2000/media/images/catalog/00459/45916-b324fa8f2527f0e099eba5c9d4d359d2.jpg" alt="Товар 4">
+                                <img src="https://img.freepik.com/free-photo/japanese-miso-soup-with-tofu_1150-26584.jpg" alt="Мисо суп">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Умные часы SmartTime</div>
-                                <div class="product-price">12 490 ₽</div>
+                                <div class="product-title">Мисо суп</div>
+                                <div class="product-description">Паста мисо, тофу, водоросли вакаме</div>
+                                <div class="product-price">280 ₽</div>
                                 <button class="add-to-cart">В корзину</button>
                             </div>
                         </div>
                         
-                        <!-- Товар 5 -->
+                        <!-- Блюдо 5 -->
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="https://www.mijia-shop.ru/wp-content/uploads/2023/09/Xiaomi-Smart-Band-8-Active.jpg" alt="Товар 5">
+                                <img src="https://img.freepik.com/free-photo/chicken-teriyaki-with-rice_1150-26583.jpg" alt="Терияки">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Фитнес-браслет Active</div>
-                                <div class="product-price">3 990 ₽</div>
+                                <div class="product-title">Терияки</div>
+                                <div class="product-description">Курица в соусе терияки с рисом</div>
+                                <div class="product-price">390 ₽</div>
                                 <button class="add-to-cart">В корзину</button>
                             </div>
                         </div>
                         
-                        <!-- Товар 6 -->
+                        <!-- Блюдо 6 -->
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="https://p4-ofp.static.pub//fes/cms/2024/04/02/kxaqaewemec3cxmsc43my65bqtp3nd941442.jpg" alt="Товар 6">
+                                <img src="https://img.freepik.com/free-photo/japanese-mochi-rice-cakes_1150-26581.jpg" alt="Моти">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Планшет Tab Plus</div>
-                                <div class="product-price">18 790 ₽</div>
+                                <div class="product-title">Моти</div>
+                                <div class="product-description">Японские рисовые десерты</div>
+                                <div class="product-price">250 ₽</div>
                                 <button class="add-to-cart">В корзину</button>
                             </div>
                         </div>
@@ -543,56 +116,6 @@
             </div>
         </div>
     </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">ИНТЕРНЕТ <span>МАГАЗИН</span></div>
-                    <p>Лидер на рынке интернет-торговли с 2010 года. Мы предлагаем качественные товары по лучшим ценам с гарантией и отличным сервисом.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Меню</h3>
-                    <ul>
-                        <li><a href="{% url 'main' %}">Главная</a></li>
-                        <li><a href="{% url 'about' %}">О компании</a></li>
-                        <li><a href="{% url 'products' %}">Товары</a></li>
-                        <li><a href="{% url 'cart' %}">Корзина</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h3>Контакты</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>г. Москва, ул. Примерная, д. 123</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+7 (123) 456-78-90</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@example.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Ежедневно с 9:00 до 21:00</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 ИНТЕРНЕТ МАГАЗИН. Все права защищены.</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
+{%endblock%}

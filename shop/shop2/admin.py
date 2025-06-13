@@ -10,7 +10,6 @@ class OrderStatusAdmin(admin.ModelAdmin):
 @admin.register(PaymentMethod)
 class PaymentMethodAdmin(admin.ModelAdmin):
     pass
-
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     pass
