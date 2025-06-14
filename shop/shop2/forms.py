@@ -85,16 +85,10 @@ class RegistrationForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         help_text=''
     )
-
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Этот email уже используется")
-        return email
 
 class LoginForm (AuthenticationForm):
     username = forms.CharField(
@@ -106,8 +100,6 @@ class LoginForm (AuthenticationForm):
         label='Введите пароль',
         widget=forms.TextInput(attrs={'class':'form-control'}),
     )  
-
-
     class Meta:
         model = User
         fields = ['username','email','password','password2']

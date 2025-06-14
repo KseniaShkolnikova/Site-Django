@@ -19,7 +19,3 @@ class OrderForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'comment': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
-
-class BasketAddProductForm(forms.Form):
-    quantity = forms.IntegerField(min_value=1)
-    reload = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)        
