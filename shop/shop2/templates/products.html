@@ -1,121 +1,187 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title_name%}
+{% block title_name %}
 Меню - SOY FLOWER | Ресторан японской кухни
-{%endblock%}   
+{% endblock %}   
 
-{% block content%}
+{% block content %}
+{% block extra_css %}
+<style>
+    /* Ваши стили остаются без изменений */
+    .add-to-cart-form {
+        margin-top: 15px;
+    }
+
+    .quantity-selector {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .quantity-selector label {
+        font-size: 14px;
+        color: var(--text-light);
+    }
+
+    .quantity-input {
+        width: 60px;
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        text-align: center;
+        transition: border-color 0.3s;
+    }
+
+    .quantity-input:focus {
+        border-color: var(--secondary);
+        outline: none;
+    }
+
+    .add-to-cart-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: var(--secondary);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add-to-cart-btn:hover {
+        background-color: var(--dark-red);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-to-cart-btn:active {
+        transform: translateY(0);
+    }
+
+    .login-notice {
+        margin-top: 15px;
+        font-size: 14px;
+        color: var(--text-light);
+        text-align: center;
+    }
+
+    .login-link {
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .login-link:hover {
+        color: var(--dark-red);
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .quantity-selector {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+        
+        .quantity-input {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
 <body>
     <main>
         <div class="container">
             <div class="page-header">
                 <h1>Наше меню</h1>
-                <div class="products-count">Доступно: 24 позиции</div>
+                <div class="products-count">Доступно: {{ menu_items.count }} позиций</div>
             </div>
             
             <div class="products-container">
+                <!-- Боковая панель с категориями -->
                 <div class="categories-sidebar">
                     <h3 class="category-title">Категории</h3>
                     <ul class="category-list">
-                        <li><a href="{% url 'all' %}" class="active">Все блюда</a></li>
-                        <li><a href="">Суши</a></li>
-                        <li><a href="">Роллы</a></li>
-                        <li><a href="">Сашими</a></li>
-                        <li><a href="">Супы</a></li>
-                        <li><a href="">Горячие блюда</a></li>
-                        <li><a href="">Салаты</a></li>
-                        <li><a href="">Десерты</a></li>
-                        <li><a href="">Напитки</a></li>
+                        <!-- Изменено: используем один и тот же URL для всех ссылок -->
+                        <li><a href="{% url 'products' %}" class="{% if not current_category %}active{% endif %}">Все блюда</a></li>
+                        {% for category in categories %}
+                        <li>
+                            <a href="{% url 'products' %}?category={{ category.id }}" 
+                               class="{% if current_category|add:'0' == category.id %}active{% endif %}">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 
+                <!-- Основная область с товарами -->
                 <div class="products-main">
-                    <h2 class="category-title">Все блюда</h2>
+                    <h2 class="category-title">
+                        {% if current_category %}
+                            {% for category in categories %}
+                                {% if category.id == current_category|add:'0' %}
+                                    {{ category.name }}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            Все блюда
+                        {% endif %}
+                    </h2>
                     
                     <div class="products-grid">
-                        <!-- Блюдо 1 -->
+                        {% for item in menu_items %}
                         <div class="product-card">
-                            <div class="product-image">
-                                <img src="https://img.freepik.com/free-photo/top-view-salmon-sushi-with-soy-sauce_23-2148773775.jpg" alt="Суши Филадельфия">
+                            <div class="product-image-container">
+                                {% if item.photo %}
+                                <img src="{{ item.photo.url }}" alt="{{ item.name }}" class="product-image">
+                                {% else %}
+                                <img src="{% static 'images/default_food.jpg' %}" alt="{{ item.name }}" class="product-image">
+                                {% endif %}
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Суши Филадельфия</div>
-                                <div class="product-description">Лосось, сливочный сыр, рис</div>
-                                <div class="product-price">350 ₽</div>
-                                <button class="add-to-cart">В корзину</button>
+                                <div class="product-title">{{ item.name }}</div>
+                                <div class="product-description">{{ item.description }}</div>
+                                <div class="product-price">{{ item.price }} ₽</div>
+                                <div class="product-weight">{{ item.weight }} г</div>
+                                
+                                {% if request.user.is_authenticated %}
+                                <form method="post" action="{% url 'basket:basket_add' item.id %}" class="add-to-cart-form">
+                                    {% csrf_token %}
+                                    <div class="quantity-selector">
+                                        <label for="id_quantity_{{ item.id }}">Количество:</label>
+                                        <input type="number" name="quantity" id="id_quantity_{{ item.id }}" 
+                                               class="quantity-input" min="1" value="1" step="1">
+                                    </div>
+                                    <button type="submit" class="add-to-cart-btn">
+                                        Добавить в корзину
+                                    </button>
+                                </form>
+                                {% else %}
+                                <div class="login-notice">
+                                    <a href="{% url 'login_user' %}?next={{ request.path }}" class="login-link">Войдите</a>, чтобы добавить в корзину
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
-                        
-                        <!-- Блюдо 2 -->
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="https://img.freepik.com/free-photo/side-view-salmon-sushi-roll-with-tobiko_141793-14250.jpg" alt="Ролл Калифорния">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Ролл Калифорния</div>
-                                <div class="product-description">Краб, авокадо, огурец, икра тобико</div>
-                                <div class="product-price">420 ₽</div>
-                                <button class="add-to-cart">В корзину</button>
-                            </div>
+                        {% empty %}
+                        <div class="no-products">
+                            В этой категории пока нет блюд
                         </div>
-                        
-                        <!-- Блюдо 3 -->
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="https://img.freepik.com/free-photo/sliced-salmon-sashimi-with-wasabi_1150-26579.jpg" alt="Сашими из лосося">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Сашими из лосося</div>
-                                <div class="product-description">Свежий лосось, васаби, имбирь</div>
-                                <div class="product-price">580 ₽</div>
-                                <button class="add-to-cart">В корзину</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Блюдо 4 -->
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="https://img.freepik.com/free-photo/japanese-miso-soup-with-tofu_1150-26584.jpg" alt="Мисо суп">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Мисо суп</div>
-                                <div class="product-description">Паста мисо, тофу, водоросли вакаме</div>
-                                <div class="product-price">280 ₽</div>
-                                <button class="add-to-cart">В корзину</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Блюдо 5 -->
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="https://img.freepik.com/free-photo/chicken-teriyaki-with-rice_1150-26583.jpg" alt="Терияки">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Терияки</div>
-                                <div class="product-description">Курица в соусе терияки с рисом</div>
-                                <div class="product-price">390 ₽</div>
-                                <button class="add-to-cart">В корзину</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Блюдо 6 -->
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="https://img.freepik.com/free-photo/japanese-mochi-rice-cakes_1150-26581.jpg" alt="Моти">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-title">Моти</div>
-                                <div class="product-description">Японские рисовые десерты</div>
-                                <div class="product-price">250 ₽</div>
-                                <button class="add-to-cart">В корзину</button>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </main>
 </body>
-</html>
-{%endblock%}
+{% endblock content %}

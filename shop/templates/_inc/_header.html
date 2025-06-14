@@ -499,21 +499,49 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html">
-                    <i class="fas fa-utensils"></i>
-                    <span class="logo-text">SOY <span>FLOWER</span></span>
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{% url 'main' %}">Главная</a></li>
-                    <li><a href="{% url 'products' %}">Меню</a></li>
-                    <li><a href="{% url 'about' %}">О нас</a></li>
-                    <li><a href="{% url 'cart' %}" class="active">Корзина</a></li>
-                </ul>
-            </nav>
+   <header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="{% url 'main' %}">
+                <i class="fas fa-utensils"></i>
+                <span class="logo-text">SOY <span>FLOWER</span></span>
+            </a>
         </div>
-    </header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'main' %}">Главная</a></li>
+                <li><a href="{% url 'products' %}">Меню</a></li>
+                <li><a href="{% url 'about' %}">О нас</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'basket_detail' %}" class="active">Корзина</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout_user' %}" class="auth-link">
+                             Выйти
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login_user' %}" class="auth-link">
+                           Войти
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'registration_user' %}" class="auth-link">
+                           Зарегестрироваться
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user.is_authenticated and user.is_staff %}
+                    <li>
+                        <a href="{% url 'OrderItem_list_view' %}" class="auth-link">
+                           Панель
+                        </a>
+                    </li>    
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>

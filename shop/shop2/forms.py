@@ -1,5 +1,7 @@
 from django import forms
 from .models import *
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 
 class MenuItemForm(forms.ModelForm):
     class Meta:
@@ -60,3 +62,52 @@ class OrderItemForm(forms.ModelForm):
             'menu_item': forms.Select(attrs={'class': 'form-select'}),
             'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+
+class RegistrationForm(UserCreationForm):
+    username = forms.CharField(
+        label='Логин',
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        min_length=2,
+        help_text=''
+    )
+    email = forms.EmailField(
+        label='Электронная почта',
+        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        required=True
+    )
+    password1 = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        help_text=''
+    )
+    password2 = forms.CharField(
+        label='Подтверждение пароля',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        help_text=''
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Этот email уже используется")
+        return email
+
+class LoginForm (AuthenticationForm):
+    username = forms.CharField(
+        label='Логин',
+        widget=forms.TextInput(attrs={'class':'form-control'}),
+        min_length=2
+    )        
+    password = forms.CharField(
+        label='Введите пароль',
+        widget=forms.TextInput(attrs={'class':'form-control'}),
+    )  
+
+
+    class Meta:
+        model = User
+        fields = ['username','email','password','password2']

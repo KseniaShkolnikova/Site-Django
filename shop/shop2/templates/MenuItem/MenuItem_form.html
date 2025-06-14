@@ -5,6 +5,8 @@
 {% if form.instance.pk %}Редактировать товар{% else %}Добавить товар{% endif %}
 {%endblock%}   
 {% block content%}
+                    {% if user.is_authenticated and user.is_staff %}
+
 <body>
     <div class="container">
         <div class="form-container">
@@ -52,4 +54,7 @@
     </script>
 </body>
 </html>
+{% else %}
+            <h1>Сначала авторизируйтесь</h1>
+{% endif %}
 {%endblock%}   

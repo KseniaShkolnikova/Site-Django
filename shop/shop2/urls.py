@@ -1,19 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
 from .views import *
+from basket.views import *
 
 urlpatterns = [
-    path('main/', main_view,name='main'),
+    path('', main_view,name='main'),
+
     path('about/',about_view,name='about'),
-    path('cart/',cart_view,name='cart'),
+    path('basket/bye/',basket_detail,name='basket_detail'),
     path('products/',products_view,name='products'),
-    path('products/electonica',electonica_view,name='electonica'),
-    path('products/tehnica',tehnica_view,name='tehnica'),
-    path('products/clother',clother_view,name='clother'),
-    path('products/for_home',for_home_view,name='for_home'),
-    path('products/sport',sport_view,name='sport'),
-    path('products/health',health_view,name='health'),
-    path('products/children',children_view,name='children'),
     path('products/all',all_view,name='all'),
 
     path('OrderItem/', OrderItemListView.as_view(), name = 'OrderItem_list_view' ),
@@ -46,4 +41,7 @@ urlpatterns = [
     path('Order/<int:pk>/update/',OrderUpdateView.as_view(), name='Order_update_view'),
     path('Order/<int:pk>/delete/',OrderdeleteView.as_view(), name='Order_delete_view'),
 
+    path('login/',login_user, name = 'login_user' ),
+    path('registration/',registration_user, name = 'registration_user' ),
+    path('logout/',logout_user, name = 'logout_user' ),
 ]

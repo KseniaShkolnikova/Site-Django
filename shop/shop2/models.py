@@ -97,6 +97,8 @@ class Order(models.Model):
     is_paid = models.BooleanField(default=False, verbose_name='Оплачено')
     payment_date = models.DateTimeField(auto_now_add=True, blank=True, null=True, verbose_name='Дата оплаты')
 
+    menu_item = models.ManyToManyField(MenuItem, through='OrderItem', verbose_name='Позиция меню')
+
     def __str__(self):
         return f"Заказ #{self.id} - {self.created_at}"
     
@@ -111,7 +113,7 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='Количество')
 
     def __str__(self):
-        return f"{self.menu_item.name} x{self.quantity}"
+        return f"{self.menu_item.name} x{self.quantity} ({self.order.pk})"
     
     class Meta:
         verbose_name = 'элемент заказа'
