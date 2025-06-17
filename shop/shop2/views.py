@@ -5,30 +5,37 @@ from .models import *
 from .forms import *
 from basket.forms import *
 from django.contrib.auth import login, logout
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
-class OrderItemListView(ListView):
+
+class OrderItemListView(PermissionRequiredMixin,ListView):
+    permission_required = 'shop.view_orderItem'
     model = OrderItem
     template_name = 'OrderItem/OrderItem_list.html'
     context_object_name = 'OrderItem'
     
-class OrderItemDetailView(DetailView):
+class OrderItemDetailView(PermissionRequiredMixin,DetailView):
+    permission_required = 'shop.view_orderItem'
     model = OrderItem
     template_name = 'OrderItem/OrderItem_detail.html'
     context_object_name = 'OrderItem'    
 
-class OrderItemCreateView(CreateView):
+class OrderItemCreateView(PermissionRequiredMixin,CreateView):
+    permission_required = 'shop.add_orderItem'
     model = OrderItem
     form_class = OrderItemForm
     template_name = 'OrderItem/OrderItem_form.html'
     success_url= reverse_lazy('OrderItem_list_view')
 
-class OrderItemUpdateView(UpdateView):
+class OrderItemUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required = 'shop.change_orderItem'
     model = OrderItem
     form_class = OrderItemForm
     template_name = 'OrderItem/OrderItem_form.html'
     success_url= reverse_lazy('OrderItem_list_view')    
 
-class OrderItemdeleteView(DeleteView):
+class OrderItemdeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = 'shop.delete_orderItem'
     model = OrderItem
     context_object_name = 'OrderItem'    
     template_name = 'OrderItem/OrderItem_confirm_delete.html'
@@ -36,29 +43,34 @@ class OrderItemdeleteView(DeleteView):
 
 
 
-class OrderListView(ListView):
+class OrderListView(PermissionRequiredMixin,ListView):
+    permission_required = 'shop.view_order'
     model = Order
     template_name = 'Order/Order_list.html'
     context_object_name = 'Order'
     
-class OrderDetailView(DetailView):
+class OrderDetailView(PermissionRequiredMixin,DetailView):
+    permission_required = 'shop.view_order'
     model = Order
     template_name = 'Order/Order_detail.html'
     context_object_name = 'Order'    
 
-class OrderCreateView(CreateView):
+class OrderCreateView(PermissionRequiredMixin,CreateView):
+    permission_required = 'shop.add_order'
     model = Order
     form_class = OrderForm
     template_name = 'Order/Order_form.html'
     success_url= reverse_lazy('Order_list_view')
 
-class OrderUpdateView(UpdateView):
+class OrderUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required = 'shop.change_order'
     model = Order
     form_class = OrderForm
     template_name = 'Order/Order_form.html'
     success_url= reverse_lazy('Order_list_view')    
 
-class OrderdeleteView(DeleteView):
+class OrderdeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = 'shop.delete_order'
     model = Order
     context_object_name = 'Order'    
     template_name = 'Order/Order_confirm_delete.html'
@@ -70,29 +82,34 @@ class OrderdeleteView(DeleteView):
 
 
 
-class CartItemListView(ListView):
+class CartItemListView(PermissionRequiredMixin,ListView):
+    permission_required = 'shop.view_cartItem'
     model = CartItem
     template_name = 'CartItem/CartItem_list.html'
     context_object_name = 'CartItem'
     
-class CartItemDetailView(DetailView):
+class CartItemDetailView(PermissionRequiredMixin,DetailView):
+    permission_required = 'shop.view_cartItem'
     model = CartItem
     template_name = 'CartItem/CartItem_detail.html'
     context_object_name = 'CartItem'    
 
-class CartItemCreateView(CreateView):
+class CartItemCreateView(PermissionRequiredMixin,CreateView):
+    permission_required = 'shop.add_cartItem'
     model = CartItem
     form_class = CartItemForm
     template_name = 'CartItem/CartItem_form.html'
     success_url= reverse_lazy('CartItem_list_view')
 
-class CartItemUpdateView(UpdateView):
+class CartItemUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required = 'shop.change_cartItem'
     model = CartItem
     form_class = CartItemForm
     template_name = 'CartItem/CartItem_form.html'
     success_url= reverse_lazy('CartItem_list_view')    
 
-class CartItemdeleteView(DeleteView):
+class CartItemdeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = 'shop.delete_cartItem'
     model = CartItem
     context_object_name = 'CartItem'    
     template_name = 'CartItem/CartItem_confirm_delete.html'
@@ -104,29 +121,34 @@ class CartItemdeleteView(DeleteView):
 
 
 
-class CategoriesListView(ListView):
+class CategoriesListView(PermissionRequiredMixin,ListView):
+    permission_required = 'shop.view_categories'
     model = Categories
     template_name = 'Categories/Categories_list.html'
     context_object_name = 'Categories'
     
-class CategoriesDetailView(DetailView):
+class CategoriesDetailView(PermissionRequiredMixin,DetailView):
+    permission_required = 'shop.view_categories'
     model = Categories
     template_name = 'Categories/Categories_detail.html'
     context_object_name = 'Categories'    
 
-class CategoriesCreateView(CreateView):
+class CategoriesCreateView(PermissionRequiredMixin,CreateView):
+    permission_required = 'shop.add_categories'
     model = Categories
     form_class = CategoriesForm
     template_name = 'Categories/Categories_form.html'
     success_url= reverse_lazy('Categories_list_view')
 
-class CategoriesUpdateView(UpdateView):
+class CategoriesUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required = 'shop.change_categories'
     model = Categories
     form_class = CategoriesForm
     template_name = 'Categories/Categories_form.html'
     success_url= reverse_lazy('Categories_list_view')    
 
-class CategoriesdeleteView(DeleteView):
+class CategoriesdeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = 'shop.delete_categories'
     model = Categories
     context_object_name = 'Categories'    
     template_name = 'Categories/Categories_confirm_delete.html'
@@ -136,12 +158,14 @@ class CategoriesdeleteView(DeleteView):
 
 
 
-class MenuItemListView(ListView):
+class MenuItemListView(PermissionRequiredMixin,ListView):
+    permission_required = 'shop.view_menuItem'
     model = MenuItem
     template_name = 'MenuItem/MenuItem_list.html'
     context_object_name = 'MenuItem'
     
-class MenuItemDetailView(DetailView):
+class MenuItemDetailView(PermissionRequiredMixin,DetailView):
+    permission_required = 'shop.view_menuItem'
     model = MenuItem
     template_name = 'MenuItem/MenuItem_detail.html'
     context_object_name = 'MenuItem'    
@@ -152,19 +176,22 @@ class MenuItemDetailView(DetailView):
         return context
         
 
-class MenuItemCreateView(CreateView):
+class MenuItemCreateView(PermissionRequiredMixin,CreateView):
+    permission_required = 'shop.add_menuItem'
     model = MenuItem
     form_class = MenuItemForm
     template_name = 'MenuItem/MenuItem_form.html'
     success_url= reverse_lazy('MenuItem_list_view')
 
-class MenuItemUpdateView(UpdateView):
+class MenuItemUpdateView(PermissionRequiredMixin,UpdateView):
+    permission_required = 'shop.change_menuItem'
     model = MenuItem
     form_class = MenuItemForm
     template_name = 'MenuItem/MenuItem_form.html'
     success_url= reverse_lazy('MenuItem_list_view')    
 
-class MenuItemdeleteView(DeleteView):
+class MenuItemdeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required = 'shop.delete_menuItem'
     model = MenuItem
     context_object_name = 'MenuItem'    
     template_name = 'MenuItem/MenuItem_confirm_delete.html'
