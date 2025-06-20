@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'HOST':'',
         'PORT':'3306',
         'NAME': '$sushi',
